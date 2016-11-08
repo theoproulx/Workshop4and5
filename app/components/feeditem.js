@@ -84,14 +84,14 @@ export default class FeedItem extends React.Component {
                        {data.contents.contents.split("\n").map((line, i) => {
                          // Note: 'i' is the index of line in data.contents.contents.
                          return (
-                         <p key={"line"    i}>{line}</p>
+                         <p key={"line"  +  i}>{line}</p>
                          );
                          })}
                      </StatusUpdate>
                  );
                  break;
              default:
-                 throw new Error("Unknown FeedItem: "     data.type);
+                 throw new Error("Unknown FeedItem: "   +  data.type);
          }
          return (
              <div className="fb-status-update panel panel-default">
@@ -137,6 +137,9 @@ export default class FeedItem extends React.Component {
                          // i is comment's index in comments array
                          return (
                            <Comment key={i}
+                            commentIdx={i}
+                            data={comment}
+                            feedItemID={data._id}
                            author={comment.author}
                            postDate={comment.postDate}>
                            {comment.contents}
